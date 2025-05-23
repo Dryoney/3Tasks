@@ -22,6 +22,10 @@ def find_users():
                 logged_users.add(username)
     return logged_users
 def main():
+    try:
+        open('log.txt', 'rt')
+    except FileNotFoundError:
+        print('Файл не найден')
     count_lines()
     count_errors()
     users = find_users()
