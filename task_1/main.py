@@ -1,4 +1,4 @@
-import re
+
 def count_lines():
     with open('log.txt','rt') as log:
         lines = log.readlines()
