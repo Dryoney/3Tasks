@@ -9,8 +9,7 @@ def get_logs_count() -> int:
     with open(LOG_FILE_NAME, 'rt') as file:
         return len(file.readlines())
 
-Topics = Literal ['INFO','ERROR','WARNING']
-def get_topic_count(topic: Topics) -> int:
+def get_topic_count(topic: Literal['INFO', 'ERROR', 'WARNING']) -> int:
     topic_counter = defaultdict(int)
     with open(LOG_FILE_NAME, 'rt') as file:
         while True:
@@ -34,18 +33,17 @@ def find_users() -> set:
 
 
 def main():
-    if os.path.exists(LOG_FILE_NAME):
-        topic = 'ERROR'
-        logs_count = get_logs_count()
-        topic_count = get_topic_count(topic)
-        print(f'Количество строк: {logs_count}')
-        print(f'Количество {topic}(s) {topic_count}')
-        users = find_users()
-        for user in users:
-            print(user)
-    else:
+    if os.path.exists(LOG_FILE_NAME) == 0:
         print('Файл не найден')
-
+        return
+    topic = 'ERROR'
+    logs_count = get_logs_count()
+    topic_count = get_topic_count(topic)
+    print(f'Количество строк: {logs_count}')
+    print(f'Количество {topic}(s) {topic_count}')
+    users = find_users()
+    for user in users:
+        print(user)
 
 
 if __name__ == '__main__':
